@@ -8,13 +8,14 @@ public class EJERC3 extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        setBackground(new Color(240, 240, 240)); // fondo gris claro
         
         // Convertimos a Graphics2D para acceder a mejores herramientas de trazo
         Graphics2D g2d = (Graphics2D) g;
         
         // Configurar el grosor del trazo y el suavizado de bordes (Antialiasing)
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.setStroke(new BasicStroke(3)); // Grosor de 3 píxeles
+        g2d.setStroke(new BasicStroke(5)); // Grosor mas grueso
 
         // 1. Trazo de una Línea Simple
         g2d.setColor(Color.BLUE);
@@ -40,6 +41,10 @@ public class EJERC3 extends JPanel {
         g2d.fillPolygon(rombo);
         g2d.setColor(Color.BLACK);
         g2d.drawString("Polígono Relleno (fillPolygon)", 220, 225);
+        
+        g2d.setColor(Color.ORANGE);
+        g2d.drawRect(400, 100, 60, 60);
+        g2d.drawString("Cuadrado", 400, 90);
     }
 
     public static void main(String[] args) {
