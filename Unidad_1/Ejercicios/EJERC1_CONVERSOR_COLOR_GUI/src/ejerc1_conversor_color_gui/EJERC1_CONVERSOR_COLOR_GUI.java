@@ -9,10 +9,13 @@ public class EJERC1_CONVERSOR_COLOR_GUI extends JFrame {
     private JSlider sliderR, sliderG, sliderB;
     private JPanel panelColor;
     private JLabel lblRGB;
+    private JLabel lblHEX;// <-- se agg ESTA LÍNEA cmb1
+    private JLabel Brillo;
+    private JButton btnAleatorio;
 
     public EJERC1_CONVERSOR_COLOR_GUI() {
         setTitle("Ajuste Dinámico de Color RGB");
-        setSize(450, 300); // Tamaño reducido por tener menos elementos
+        setSize(600, 450); // Tamaño ajustado por tener mas elementos
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout(10, 10));
 
@@ -22,16 +25,26 @@ public class EJERC1_CONVERSOR_COLOR_GUI extends JFrame {
         panelColor.setPreferredSize(new Dimension(150, 150));
         panelColor.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
         add(panelColor, BorderLayout.EAST);
+        
+        JButton btnAleatorio = new JButton("Color Aleatorio");
+        btnAleatorio.addActionListener(e -> {
+        sliderR.setValue((int)(Math.random()*256));
+        sliderG.setValue((int)(Math.random()*256));
+        sliderB.setValue((int)(Math.random()*256));
+        });
+        JPanel panelArriba = new JPanel();
+        panelArriba.add(btnAleatorio);
+        add(panelArriba, BorderLayout.NORTH);
 
         // Panel central: Controles deslizantes (Sliders) para RGB
         JPanel panelControles = new JPanel();
-        panelControles.setLayout(new GridLayout(3, 1, 5, 5));
+        panelControles.setLayout(new GridLayout(4, 1, 5, 5)); // antes era 3,1 "panelControles.setLayout(new GridLayout(3, 1, 5, 5));"
         panelControles.setBorder(BorderFactory.createTitledBorder("Ajuste de Canales RGB"));
 
         sliderR = crearSlider("Rojo (R)");
         sliderG = crearSlider("Verde (G)");
         sliderB = crearSlider("Azul (B)");
-
+        
         panelControles.add(sliderR);
         panelControles.add(sliderG);
         panelControles.add(sliderB);
@@ -39,9 +52,13 @@ public class EJERC1_CONVERSOR_COLOR_GUI extends JFrame {
 
         // Panel inferior: Etiqueta de texto con el resultado
         JPanel panelResultados = new JPanel();
+        panelResultados.setLayout(new GridLayout(2,1)); // 2 filas
         lblRGB = new JLabel("RGB: ");
         lblRGB.setFont(new Font("Monospaced", Font.BOLD, 16));
+        lblHEX = new JLabel("HEX: #000000");
+        lblHEX.setFont(new Font("Monospaced", Font.BOLD, 16));
         panelResultados.add(lblRGB);
+        panelResultados.add(lblHEX);
         add(panelResultados, BorderLayout.SOUTH);
 
         // Forzar el cálculo inicial
@@ -75,6 +92,7 @@ public class EJERC1_CONVERSOR_COLOR_GUI extends JFrame {
 
         // Mostrar texto RGB
         lblRGB.setText(String.format("RGB: (%3d, %3d, %3d)", r, g, b));
+        lblHEX.setText(String.format("HEX: #%02X%02X%02X", r, g, b));
     }
 
     public static void main(String[] args) {
