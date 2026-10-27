@@ -18,9 +18,9 @@ public class EJERC7 extends JFrame {
         setLayout(new BorderLayout());
 
         try {
-            BufferedImage imagenOriginal = ImageIO.read(new File("Unidad_1_Introduccion/src/data/perro.jpg"));
+            BufferedImage imagenOriginal = ImageIO.read(new File("src/ejerc7/data/miko.jpeg"));
             // Aplicar el método de umbral (Threshold)
-            BufferedImage imagenBinarizada = aplicarUmbral(imagenOriginal, 127);
+            BufferedImage imagenBinarizada = aplicarUmbral(imagenOriginal, 100);
 
             // Mostrar el resultado usando JLabel
             JLabel labelImagen = new JLabel(new ImageIcon(imagenBinarizada));
@@ -49,10 +49,14 @@ public class EJERC7 extends JFrame {
                 int b = pixel & 0xff;
 
                 // Promedio simple para medir la intensidad del píxel
-                int intensidad = (r + g + b) / 3;
+                //int intensidad = (r + g + b) / 3;
+                // MODIFICACION 2a: Intensidad con luminancia, pesa más el verde que es lo que ve el ojo humano
+                int intensidad = (int)(0.299 * r + 0.587 * g + 0.114 * b);
 
                 // Modificar a blanco o negro puro dependiendo del umbral
-                int nuevoColor = (intensidad > umbral) ? 0xFFFFFF : 0x000000;
+                //int nuevoColor = (intensidad > umbral) ? 0xFFFFFF : 0x000000;
+                // MODIFICACION 2b: Binarización invertida - fondo negro, Miko blanca
+                int nuevoColor = (intensidad > umbral) ? 0x000000 : 0xFFFFFF;
                 binarizada.setRGB(x, y, nuevoColor);
             }
         }
