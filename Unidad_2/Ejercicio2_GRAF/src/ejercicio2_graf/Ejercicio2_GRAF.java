@@ -16,7 +16,8 @@ import javax.swing.JPanel;
 public class Ejercicio2_GRAF extends JPanel {
     int[] xOrig = {80, 140, 140, 80};
     int[] yOrig = {80, 80, 140, 140};
-    double sx = 1.8, sy = 1.8;
+    //double sx = 1.8, sy = 1.8;
+    double sx = 2.5, sy = 0.8; //(cambio1)
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -39,14 +40,16 @@ public class Ejercicio2_GRAF extends JPanel {
         g.drawString("Respecto a (0,0)", xOrigen[0], yOrigen[0] - 5);
 
         // Escalamiento respecto al centroide (xf=110, yf=110) -> Se mantiene en su sitio
-        int xf = 110, yf = 110;
+        //int xf = 110, yf = 110;
+        int xf = 80, yf = 80; //(cambio2)
         int[] xFijo = new int[4];
         int[] yFijo = new int[4];
         for (int i = 0; i < 4; i++) {
             xFijo[i] = (int) (xf + (xOrig[i] - xf) * sx);
             yFijo[i] = (int) (yf + (yOrig[i] - yf) * sy);
         }
-        g.setColor(new Color(39, 174, 96));
+        //g.setColor(new Color(39, 174, 96));
+        g.setColor(new Color(155, 89, 182)); //(cambio2)
         g.drawPolygon(xFijo, yFijo, 4);
         g.drawString("Respecto al centro", xFijo[0], yFijo[2] + 15);
     }
