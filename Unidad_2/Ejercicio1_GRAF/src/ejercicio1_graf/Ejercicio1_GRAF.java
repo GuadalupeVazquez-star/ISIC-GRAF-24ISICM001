@@ -16,12 +16,16 @@ import javax.swing.JPanel;
 
 public class Ejercicio1_GRAF extends JPanel {
     // Coordenadas originales del triángulo
-    int[] xOrig = {50, 100, 150};
-    int[] yOrig = {150, 50, 150};
+    //int[] xOrig = {50, 100, 150};
+    //int[] yOrig = {150, 50, 150};
+    int[] xOrig = {40, 90, 170}; //(cambio2)
+    int[] yOrig = {180, 40, 180}; //(cambio2)
     
     // Vector de traslación
-    int tx = 180;
-    int ty = 70;
+    //int tx = 180;
+    //int ty = 70;
+    int tx = 200; //(cambio1)
+    int ty = -30; //(cambio1)
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -42,7 +46,8 @@ public class Ejercicio1_GRAF extends JPanel {
         }
 
         // 3. Dibujar figura trasladada
-        g.setColor(new Color(41, 128, 185));
+        //g.setColor(new Color(41, 128, 185));
+        g.setColor(new Color(231, 76, 60)); //(cambio2)
         g.fillPolygon(xTras, yTras, 3);
         g.drawString("Trasladada (" + tx + ", " + ty + ")", xTras[0], yTras[0] + 15);
     }
