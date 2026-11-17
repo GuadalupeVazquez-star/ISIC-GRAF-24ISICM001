@@ -16,8 +16,10 @@ import javax.swing.JPanel;
 public class Ejercicio3_GRAF extends JPanel {
     int[] xOrig = {200, 320, 320, 200};
     int[] yOrig = {180, 180, 210, 210};
-    int xp = 200, yp = 195; // Punto pivote
-    double anguloGrados = 45.0;
+    //int xp = 200, yp = 195; // Punto pivote
+    int xp = 200, yp = 210; // Punto pivote - ahora en la esquina (cambio2)
+    //double anguloGrados = 45.0;
+    double anguloGrados = 90.0; //(cambio1)
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -42,13 +44,15 @@ public class Ejercicio3_GRAF extends JPanel {
             yRot[i] = (int) Math.round(yp + (dx * sin + dy * cos));
         }
 
-        g.setColor(new Color(230, 126, 34));
+        //g.setColor(new Color(230, 126, 34));
+        g.setColor(new Color(52, 152, 219));//(cambio2)
         g.fillPolygon(xRot, yRot, 4);
 
         // Dibujar pivote
         g.setColor(Color.RED);
         g.fillOval(xp - 4, yp - 4, 8, 8);
-        g.drawString("Pivote (" + xp + "," + yp + ") | Rotación: 45°", 20, 30);
+        //g.drawString("Pivote (" + xp + "," + yp + ") | Rotación: 45°", 20, 30);
+        g.drawString("Pivote (" + xp + "," + yp + ") | Rotación: " + anguloGrados + "°", 20, 30); //(cambio1)
     }
 
     public static void main(String[] args) {
