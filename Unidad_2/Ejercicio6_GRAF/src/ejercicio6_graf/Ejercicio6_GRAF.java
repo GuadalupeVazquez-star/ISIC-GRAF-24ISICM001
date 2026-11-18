@@ -11,7 +11,8 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.RoundRectangle2D;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.RoundRectangle2D; //(cambio2)
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -47,14 +48,16 @@ public class Ejercicio6_GRAF extends JFrame {
                 g2d.drawLine(0, cy, getWidth(), cy);
 
                 // Figura base centrada en (0,0) local
-                RoundRectangle2D rect = new RoundRectangle2D.Double(-50, -50, 100, 100, 20, 20);
+                //RoundRectangle2D rect = new RoundRectangle2D.Double(-50, -50, 100, 100, 20, 20);
+                Ellipse2D rect = new Ellipse2D.Double(-50, -50, 100, 100); //(cambio2)
 
                 // Transformación compuesta: Trasladar al centro -> Escalar
                 AffineTransform at = new AffineTransform();
                 at.translate(cx, cy);
                 at.scale(sx, sy);
 
-                g2d.setColor(new Color(142, 68, 173, 180));
+                //g2d.setColor(new Color(142, 68, 173, 180));
+                g2d.setColor(new Color(231, 76, 60, 180));//(cambio2)
                 g2d.fill(at.createTransformedShape(rect));
                 g2d.setColor(Color.BLACK);
                 g2d.draw(at.createTransformedShape(rect));
@@ -62,8 +65,10 @@ public class Ejercicio6_GRAF extends JFrame {
         };
 
         JPanel controles = new JPanel(new GridLayout(2, 2));
-        JSlider sliderX = new JSlider(20, 300, 100);
-        JSlider sliderY = new JSlider(20, 300, 100);
+        //JSlider sliderX = new JSlider(20, 300, 100);
+        //JSlider sliderY = new JSlider(20, 300, 100);
+        JSlider sliderX = new JSlider(10, 500, 200); //(cambio1)
+        JSlider sliderY = new JSlider(10, 500, 50); //(cambio1)
 
         sliderX.addChangeListener(e -> { sx = sliderX.getValue() / 100.0; lienzo.repaint(); });
         sliderY.addChangeListener(e -> { sy = sliderY.getValue() / 100.0; lienzo.repaint(); });
