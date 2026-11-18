@@ -23,8 +23,10 @@ import javax.swing.JPanel;
  * @author BICHIYAL
  */
 public class Ejercicio5_GRAF extends JPanel implements KeyListener {
-    private double posX = 200, posY = 200;
-    private final double PASO = 15.0;
+    //private double posX = 200, posY = 200;
+    private double posX = 80, posY = 80; //(cambio2)
+    //private final double PASO = 15.0;
+    private final double PASO = 35.0; //(cambio1)
     private ArrayList<Point2D.Double> historial = new ArrayList<>();
 
     public Ejercicio5_GRAF() {
@@ -35,10 +37,15 @@ public class Ejercicio5_GRAF extends JPanel implements KeyListener {
 
     private Shape crearNave() {
         Path2D nave = new Path2D.Double();
-        nave.moveTo(0, -25);
-        nave.lineTo(20, 20);
-        nave.lineTo(0, 10);
-        nave.lineTo(-20, 20);
+        //nave.moveTo(0, -25);
+        //nave.lineTo(20, 20);
+        //nave.lineTo(0, 10);
+        //nave.lineTo(-20, 20);
+        
+        nave.moveTo(0, -35); //(cambio2)
+        nave.lineTo(30, 25);//(cambio2)
+        nave.lineTo(0, 15);//(cambio2)
+        nave.lineTo(-30, 25);//(cambio2)
         nave.closePath();
         return nave;
     }
@@ -50,7 +57,9 @@ public class Ejercicio5_GRAF extends JPanel implements KeyListener {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         // Dibujar rastro de traslaciones
-        g2d.setColor(new Color(200, 200, 200, 120));
+        //g2d.setColor(new Color(200, 200, 200, 120));
+        g2d.setColor(new Color(52, 152, 219, 120)); //(cambio1)
+        g2d.setColor(new Color(39, 174, 96));
         for (Point2D.Double p : historial) {
             AffineTransform atRastro = AffineTransform.getTranslateInstance(p.x, p.y);
             g2d.draw(atRastro.createTransformedShape(crearNave()));
@@ -60,7 +69,8 @@ public class Ejercicio5_GRAF extends JPanel implements KeyListener {
         AffineTransform transform = new AffineTransform();
         transform.translate(posX, posY);
 
-        g2d.setColor(new Color(231, 76, 60));
+        //g2d.setColor(new Color(231, 76, 60));
+        g2d.setColor(new Color(39, 174, 96));//(cambio2)
         g2d.fill(transform.createTransformedShape(crearNave()));
         
         g2d.setColor(Color.DARK_GRAY);
