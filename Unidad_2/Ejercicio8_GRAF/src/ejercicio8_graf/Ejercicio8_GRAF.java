@@ -48,7 +48,13 @@ public class Ejercicio8_GRAF extends JPanel implements MouseMotionListener {
         atSombra.shear(shx, 0);      // Inclinación controlada por el mouse
         atSombra.scale(1.0, 0.4);    // Aplastamiento de sombra
 
-        g2d.setColor(new Color(50, 50, 50, 90));
+        //g2d.setColor(new Color(50, 50, 50, 90));
+        //g2d.fillRect(-40, -120, 80, 120); // Bloque vertical (objeto)
+        
+        // MODIFICACION 1: La sombra cambia de azul a rojo según shx
+        int rojo = (int) Math.min(255, Math.max(0, 100 + shx * 80));
+        int azul = (int) Math.min(255, Math.max(0, 150 - shx * 80));
+        g2d.setColor(new Color(rojo, 50, azul, 90));
         g2d.fillRect(-40, -120, 80, 120); // Bloque vertical (objeto)
 
         // Aplicar transformación de sombra al mismo bloque
@@ -63,6 +69,10 @@ public class Ejercicio8_GRAF extends JPanel implements MouseMotionListener {
         AffineTransform atTexto = new AffineTransform();
         atTexto.translate(40, 80);
         atTexto.shear(shx * 0.5, shy * 0.5);
+        
+        // MODIFICACION 2: Texto con sesgado completo y que flota
+        atTexto.translate(40, 80 + shy * 40); // Ahora también sube y baja con shy
+        atTexto.shear(shx, shy); // Ya no es 0.5, es completo para que se note más
         g2d.setFont(new Font("SansSerif", Font.BOLD, 28));
         g2d.setColor(new Color(192, 57, 43));
         g2d.drawString("GRAFICACIÓN 2D", 0, 0);
