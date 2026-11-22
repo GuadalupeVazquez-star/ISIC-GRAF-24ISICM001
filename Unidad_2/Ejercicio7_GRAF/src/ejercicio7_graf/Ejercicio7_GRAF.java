@@ -22,8 +22,10 @@ import javax.swing.SwingUtilities;
  * @author BICHIYAL
  */
 public class Ejercicio7_GRAF extends JFrame {
-    private double theta1 = -30; // Ángulo hombro
-    private double theta2 = 45;  // Ángulo codo
+    //private double theta1 = -30; // Ángulo hombro
+    //private double theta2 = 45;  // Ángulo codo
+    private double theta1 = -90; // Ángulo hombro (CAMBIO1)
+    private double theta2 = 0;  // Ángulo codo  (CAMBIO1)
 
     public Ejercicio7_GRAF() {
         setTitle("Rotación Jerárquica - Brazo Articulado 2D");
@@ -40,8 +42,10 @@ public class Ejercicio7_GRAF extends JFrame {
 
                 int baseX = getWidth() / 2;
                 int baseY = getHeight() - 100;
-                int largoBrazo = 130;
-                int largoAntebrazo = 100;
+                //int largoBrazo = 130;
+                //int largoAntebrazo = 100;
+                int largoBrazo = 170; //(CAMBIO1)
+                int largoAntebrazo = 130; //(CAMBIO1)
 
                 // Base fija
                 g2d.setColor(Color.DARK_GRAY);
@@ -53,7 +57,8 @@ public class Ejercicio7_GRAF extends JFrame {
                 // --- ESLABÓN 1 (Hombro) ---
                 g2d.translate(baseX, baseY);
                 g2d.rotate(Math.toRadians(theta1));
-                g2d.setColor(new Color(52, 152, 219));
+                //g2d.setColor(new Color(52, 152, 219));
+                g2d.setColor(new Color(142, 68, 173));//(CAMBIO2)
                 g2d.fillRoundRect(0, -12, largoBrazo, 24, 15, 15);
                 g2d.setColor(Color.BLACK);
                 g2d.fillOval(-6, -6, 12, 12); // Articulación 1
@@ -61,15 +66,18 @@ public class Ejercicio7_GRAF extends JFrame {
                 // --- ESLABÓN 2 (Codo: hereda la transformación del hombro) ---
                 g2d.translate(largoBrazo, 0);
                 g2d.rotate(Math.toRadians(theta2));
-                g2d.setColor(new Color(46, 204, 113));
+                //g2d.setColor(new Color(46, 204, 113));
+                g2d.setColor(new Color(241, 196, 15)); //(CAMBIO2)
                 g2d.fillRoundRect(0, -9, largoAntebrazo, 18, 12, 12);
                 g2d.setColor(Color.RED);
                 g2d.fillOval(-5, -5, 10, 10); // Articulación 2
 
                 // Efector final (pinza)
                 g2d.translate(largoAntebrazo, 0);
-                g2d.setColor(Color.ORANGE);
-                g2d.fillOval(-7, -7, 14, 14);
+                //g2d.setColor(Color.ORANGE);
+                //g2d.fillOval(-7, -7, 14, 14);
+                g2d.setColor(Color.RED); //(cambio2)
+                g2d.fillOval(-12, -12, 24, 24); //(cambio2)
 
                 // Restaurar contexto gráfico
                 g2d.setTransform(inicial);
@@ -77,8 +85,10 @@ public class Ejercicio7_GRAF extends JFrame {
         };
 
         JPanel sliders = new JPanel(new GridLayout(2, 2));
-        JSlider s1 = new JSlider(-180, 0, -30);
-        JSlider s2 = new JSlider(-150, 150, 45);
+        //JSlider s1 = new JSlider(-180, 0, -30);
+        //JSlider s2 = new JSlider(-150, 150, 45);
+        JSlider s1 = new JSlider(-180, 0, -90); //(CAMBIO1)
+        JSlider s2 = new JSlider(-150, 150, 0); //(CAMBIO1)
         s1.addChangeListener(e -> { theta1 = s1.getValue(); canvas.repaint(); });
         s2.addChangeListener(e -> { theta2 = s2.getValue(); canvas.repaint(); });
 
